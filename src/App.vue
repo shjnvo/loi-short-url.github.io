@@ -6,10 +6,8 @@ import shortenLink from './scripts/api/shorten-api';
 import { saveLink, getLinks } from './scripts/data/links-data';
 
 import NavBar from './components/NavBar.vue';
-import Jumbotron from './components/Jumbotron.vue';
 import InputForm from './components/InputForm.vue';
 import LinkItem from './components/LinkItem.vue';
-import Footer from './components/Footer.vue';
 
 const links = ref(getLinks());
 const loading = ref(false);
@@ -77,21 +75,15 @@ window.onscroll = () => {
 </script>
 
 <template>
-  <div @scroll="onScrollHandler">
+  <div>
     <!-- <header class="sticky top-0 z-10"> -->
     <header class="sticky top-0 z-10 bg-white" :class="headerClassOnScroll">
       <NavBar />
     </header>
 
-    <main class="bg-neutral-gray bg-opacity-20">
+    <main class="bg-neutral-gray bg-opacity-20 flex flex-col h-screen">
       <div
-        class="jumbotron-container overflow-x-hidden pb-36 px-8 bg-white md:pt-12 xl:px-0"
-      >
-        <Jumbotron linkDestination="#shortenLinkForm" />
-      </div>
-
-      <div
-        class="shorten-link-container px-8 text-neutral-very-dark-violet lg:px-0"
+        class="shorten-link-container px-8 text-neutral-very-dark-violet lg:px-0 my-auto"
       >
         <div
           class="form-container container mx-auto relative -top-[5.5rem] flex flex-col gap-y-4"
@@ -148,121 +140,9 @@ window.onscroll = () => {
             />
           </transition-group>
         </div>
-
-        <div class="statistic-container container mx-auto mt-4 text-center">
-          <section>
-            <h2 class="text-3xl font-bold tracking-tighter mb-3 md:text-4xl">
-              Advanced Statistic
-            </h2>
-            <p
-              class="mx-auto text-neutral-grayish-violet leading-relaxed sm:w-11/12 md:w-7/12 lg:w-1/3"
-            >
-              Track how your links are performing across the web with our
-              advanced statistics dashboard.
-            </p>
-          </section>
-
-          <div
-            class="card-container relative flex flex-col gap-x-8 gap-y-16 text-left mt-20 md:flex-row"
-          >
-            <hr
-              class="w-3 h-[45rem] mx-auto bg-primary-cyan absolute top-[35rem] left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 sm:top-[28rem] md:top-40 md:w-full md:h-3"
-            />
-
-            <div
-              class="card flex flex-col items-center w-full p-8 pt-0 bg-white rounded-md md:w-1/3 md:items-start"
-            >
-              <div
-                class="bg-primary-dark-violet p-6 rounded-full w-fit relative -top-10"
-              >
-                <img
-                  src="./assets/icon-brand-recognition.svg"
-                  alt="Icon Brand Recognition"
-                />
-              </div>
-
-              <h3 class="text-xl font-bold text-neutral-very-dark-violet mb-4">
-                Brand Recognition
-              </h3>
-
-              <p
-                class="text-neutral-gray leading-relaxed text-center md:text-left"
-              >
-                Boost your brand recognition with each click. Generic links
-                don’t mean a thing. Branded links help instil confidence in your
-                content.
-              </p>
-            </div>
-
-            <div
-              class="card flex flex-col items-center w-full p-8 pt-0 bg-white rounded-md relative top-10 md:w-1/3 md:items-start"
-            >
-              <div
-                class="bg-primary-dark-violet p-6 rounded-full w-fit relative -top-10"
-              >
-                <img
-                  src="./assets/icon-detailed-records.svg"
-                  alt="Icon Brand Recognition"
-                />
-              </div>
-
-              <h3 class="text-xl font-bold text-neutral-very-dark-violet mb-4">
-                Detailed Records
-              </h3>
-
-              <p
-                class="text-neutral-gray leading-relaxed text-center md:text-left"
-              >
-                Gain insights into who is clicking your links. Knowing when and
-                where people engage with your content helps inform better
-                decisions.
-              </p>
-            </div>
-
-            <div
-              class="card flex flex-col items-center w-full p-8 pt-0 bg-white rounded-md relative top-20 md:w-1/3 md:items-start"
-            >
-              <div
-                class="bg-primary-dark-violet p-6 rounded-full w-fit relative -top-10"
-              >
-                <img
-                  src="./assets/icon-fully-customizable.svg"
-                  alt="Icon Brand Recognition"
-                />
-              </div>
-
-              <h3 class="text-xl font-bold text-neutral-very-dark-violet mb-4">
-                Fully Customizable
-              </h3>
-
-              <p
-                class="text-neutral-gray leading-relaxed text-center md:text-left"
-              >
-                Improve brand awareness and content discoverability through
-                customizable links, supercharging audience engagement.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
-
-      <section
-        class="mt-48 py-16 text-center bg-boost-mobile bg-cover bg-center bg-primary-dark-violet sm:bg-boost-desktop"
-      >
-        <h1 class="text-3xl font-bold mb-10 text-white md:text-4xl">
-          Boost your links today
-        </h1>
-
-        <a
-          href="#shortenLinkForm"
-          class="bg-primary-cyan px-9 py-4 my-8 rounded-full text-white hover:brightness-110 duration-200 text-themeSize font-bold"
-        >
-          Get Started
-        </a>
-      </section>
     </main>
 
-    <Footer />
     <div class="attribution bg-primary-cyan text-white text-center py-1 px-8">
       Challenge by
       <a
