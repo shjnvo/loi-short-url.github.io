@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    command: npm run dev
+    volumes:
+      - .:/repo
+    ports:
+      - "3080:3080"
