@@ -146,14 +146,7 @@ window.onscroll = () => {
     </main>
 
     <div class="attribution bg-primary-cyan text-white text-center py-1 px-8">
-      Challenge by
-      <a
-        href="https://www.frontendmentor.io/profile/ValdiANS"
-        target="_blank"
-        class="underline"
-      >
-        Frontend Mentor</a
-      >. Coded by
+      Code by VoDucLoi, following the template of
       <a href="https://github.com/ValdiANS" target="_blank" class="underline">
         Valdi</a
       >.
