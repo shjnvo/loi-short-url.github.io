@@ -35,19 +35,17 @@ const submitHandler = async () => {
 
   try {
     const shortLink = await shortenLink(input.value);
-    const { ok, disallowed_reason, error } = shortLink;
+    // const { ok, disallowed_reason, error } = shortLink;
+    // console.log(shortLink)
+    if (!shortLink.short_url) throw new Error(shortLink.message);
 
-    if (!ok) throw new Error(disallowed_reason || error);
-
-    const { original_link, full_short_link2 } = shortLink.result;
+    // const { original_link, full_short_link2 } = shortLink.result;
     saveLink({
-      link: original_link,
-      shortLink: full_short_link2,
+      shortLink: shortLink.short_url,
     });
 
     links.value.unshift({
-      link: original_link,
-      shortLink: full_short_link2,
+      shortLink: shortLink.short_url,
     });
 
     input.value = '';

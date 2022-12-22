@@ -2,12 +2,6 @@
   <div
     class="relative w-full flex flex-col items-center gap-y-4 gap-x-6 bg-white pl-8 pr-6 py-4 rounded-md text-themeSize text-neutral-very-dark-blue md:flex-row"
   >
-    <p
-      class="w-full break-words after:border-b-gray-200 after:border-b after:border-solid after:absolute after:left-0 after:w-full after:h-2.5 after:block after:content md:after:hidden"
-    >
-      {{ link }}
-    </p>
-
     <div
       class="w-full flex flex-col items-start justify-end gap-x-6 gap-y-4 md:flex-row md:items-center"
     >
@@ -34,11 +28,6 @@
 <script setup>
 import { ref } from 'vue';
 const props = defineProps({
-  link: {
-    type: String,
-    required: true,
-  },
-
   shortLink: {
     type: String,
     required: true,
