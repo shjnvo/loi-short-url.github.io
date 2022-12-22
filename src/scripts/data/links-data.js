@@ -29,4 +29,10 @@ const getLinks = () => {
   return JSON.parse(sessionStorage.getItem(cacheKey)) || [];
 };
 
-export { saveLink, getLinks };
+const removeLink = () => {
+  if (!checkStorage(cacheKey)) return;
+
+  sessionStorage.removeItem(cacheKey);
+};
+
+export { saveLink, getLinks, removeLink };

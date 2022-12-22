@@ -3,7 +3,7 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { ref } from 'vue';
 import shortenLink from './scripts/api/shorten-api';
-import { saveLink, getLinks } from './scripts/data/links-data';
+import { saveLink, getLinks, removeLink } from './scripts/data/links-data';
 
 import NavBar from './components/NavBar.vue';
 import InputForm from './components/InputForm.vue';
@@ -14,6 +14,9 @@ const loading = ref(false);
 
 const isInputErr = ref(false);
 const input = ref('');
+const errMsg = ref("Please add a link")
+
+removeLink()
 
 const inputChangeHandler = (val) => {
   input.value = val;
@@ -35,18 +38,21 @@ const submitHandler = async () => {
 
   try {
     const shortLink = await shortenLink(input.value);
-    // const { ok, disallowed_reason, error } = shortLink;
-    // console.log(shortLink)
-    if (!shortLink.short_url) throw new Error(shortLink.message);
 
-    // const { original_link, full_short_link2 } = shortLink.result;
+    if (!shortLink.short_url) {
+      loading.value = false;
+      errMsg.value = shortLink.message
+      isInputErr.value = true
+      return
+    }
+
+    removeLink()
+
     saveLink({
       shortLink: shortLink.short_url,
     });
 
-    links.value.unshift({
-      shortLink: shortLink.short_url,
-    });
+    links.value = getLinks()
 
     input.value = '';
     console.log('Submitted');
@@ -74,7 +80,6 @@ window.onscroll = () => {
 
 <template>
   <div>
-    <!-- <header class="sticky top-0 z-10"> -->
     <header class="sticky top-0 z-10 bg-white" :class="headerClassOnScroll">
       <NavBar />
     </header>
@@ -94,7 +99,7 @@ window.onscroll = () => {
             <InputForm
               name="Shorten Input"
               placeholder="Shorten a link here..."
-              errMsg="Please add a link"
+              :errMsg="errMsg"
               :inputValue="input"
               @inputChange="inputChangeHandler"
               :inputClass="[
@@ -133,8 +138,7 @@ window.onscroll = () => {
             <LinkItem
               v-for="item in links"
               :key="item"
-              :link="item.link"
-              :shortLink="item.shortLink"
+              :shortLink="item"
             />
           </transition-group>
         </div>
